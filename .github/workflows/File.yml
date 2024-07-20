@@ -1,9 +1,10 @@
-name: Java CI
+name: Generate Data File
 
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   build:
@@ -13,23 +14,19 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Print current working directory
-      run: pwd
-
-    - name: List all files at root
-      run: ls -al
-
-    - name: List all files recursively
-      run: ls -R
-
-    - name: Set up JDK 20
+    - name: Set up JDK
       uses: actions/setup-java@v3
       with:
         java-version: '20'
-        distribution: 'temurin'
 
-    - name: Compile Java program
+    - name: Compile Java code
       run: javac GenerateFile.java
 
-    - name: Run Java program
+    - name: Run Java code
       run: java GenerateFile
+
+    - name: Upload data file
+      uses: actions/upload-artifact@v3
+      with:
+        name: data-file
+        path: data.txt
