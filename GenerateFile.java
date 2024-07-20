@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
-public class GenerateDataFile {
+public class GenerateFile {
     public static void main(String[] args) {
         String fileName = "data.txt";
         String[] cities = { "New York", "Los Angeles", "Chicago", "Houston", "Phoenix" };
