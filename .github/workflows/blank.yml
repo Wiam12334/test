@@ -1,0 +1,39 @@
+name: Java CI
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Print current working directory
+      run: pwd
+
+    - name: List all files at root
+      run: ls -al
+
+    - name: List all files recursively
+      run: ls -R
+
+    - name: Show contents of GenerateDataFile.java
+      run: cat GenerateDataFile.java
+
+    - name: Set up JDK 20
+      uses: actions/setup-java@v3
+      with:
+        java-version: '20'
+        distribution: 'temurin'
+
+    - name: Compile Java program
+      run: javac GenerateDataFile.java
+
+    - name: Run Java program
+      run: java GenerateDataFile
+
